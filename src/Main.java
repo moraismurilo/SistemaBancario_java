@@ -111,3 +111,18 @@ class ContaPoupanca extends TipoDeConta {
     }
 }
 
+class ContaCorrente extends TipoDeConta {
+    public void depositar(double valor) {
+        saldo += valor;
+        System.out.println("\nDepósito de R$ " + valor + " na Conta Corrente realizado com sucesso.");
+    }
+
+    public void sacar(double valor) {
+        if (valor <= saldo) {
+            saldo -= valor;
+            System.out.println("\nSaque de R$ " + valor + " na Conta Corrente realizado com sucesso.");
+        } else {
+            System.out.println("\nInfelizmente seu saldo é insuficiente para esse saque. Verifique o saldo e refaça a operação.");
+        }
+    }
+}
