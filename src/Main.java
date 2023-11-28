@@ -36,3 +36,62 @@ public class Main {
         scanner.close();
     }
 
+    public static void operacoesConta(TipoDeConta conta, Scanner scanner) {
+        while (true) {
+            System.out.println("\nEscolha uma operação:");
+            System.out.println("1. Verificar Saldo");
+            System.out.println("2. Depositar");
+            System.out.println("3. Sacar");
+            System.out.println("4. Voltar para o menu anterior");
+            System.out.println("5. Sair");
+
+            System.out.print("\nDigite o número de sua opção: ");
+            int escolhaOperacao = scanner.nextInt();
+
+            switch (escolhaOperacao) {
+                case 1:
+                    System.out.println("\n======================================================");
+                    System.out.printf("                Saldo atual: R$ %.2f.\n", conta.saldo);
+                    System.out.println("======================================================");
+                    break;
+                case 2:
+                    if (conta instanceof ContaCorrente) {
+                        System.out.print("\nInforme o valor do depósito: R$ ");
+                        double valorDeposito = scanner.nextDouble();
+                        ((ContaCorrente) conta).depositar(valorDeposito);
+                    } else if (conta instanceof ContaPoupanca) {
+                        System.out.print("\nInforme o valor do depósito: R$ ");
+                        double valorDeposito = scanner.nextDouble();
+                        ((ContaPoupanca) conta).depositar(valorDeposito);
+                    }
+                    System.out.println("\n======================================================");
+                    System.out.printf("                Saldo atual: R$ %.2f.", conta.saldo);
+                    System.out.println("\n======================================================");
+                    break;
+                case 3:
+                    if (conta instanceof ContaCorrente) {
+                        System.out.print("\nInforme o valor do saque: R$ ");
+                        double valorSaque = scanner.nextDouble();
+                        ((ContaCorrente) conta).sacar(valorSaque);
+                    } else if (conta instanceof ContaPoupanca) {
+                        System.out.print("\nInforme o valor do saque: R$ ");
+                        double valorSaque = scanner.nextDouble();
+                        ((ContaPoupanca) conta).sacar(valorSaque);
+                    }
+                    System.out.println("\n======================================================");
+                    System.out.printf("                Saldo atual: R$ %.2f.", conta.saldo);
+                    System.out.println("\n======================================================\n");
+                    break;
+                case 4:
+                    return; // Voltar para o menu anterior
+                case 5:
+                    System.out.println("\nO Banco SPI agradece por utilizar o nosso serviço!!");
+                    System.out.println("Tenha um ótimo dia e volte sempre.");
+                    System.exit(0);
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+            }
+        }
+    }
+}
+
